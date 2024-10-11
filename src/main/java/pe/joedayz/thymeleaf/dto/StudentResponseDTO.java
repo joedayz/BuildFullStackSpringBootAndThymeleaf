@@ -15,6 +15,7 @@ import org.springframework.util.ObjectUtils;
 public class StudentResponseDTO {
   private String id;
   private String name;
+  private String email;
   private LocalDate birthday;
 
   private String street;
