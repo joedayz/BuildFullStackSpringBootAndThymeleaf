@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/")
+@RequestMapping("/")  // http://localhost:8080/
 public class IndexController {
 
     @RequestMapping("")
