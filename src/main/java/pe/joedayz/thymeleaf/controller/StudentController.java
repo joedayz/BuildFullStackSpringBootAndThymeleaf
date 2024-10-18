@@ -3,7 +3,6 @@ package pe.joedayz.thymeleaf.controller;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.joedayz.thymeleaf.dto.CreateStudentDTO;
 import pe.joedayz.thymeleaf.dto.StudentResponseDTO;
+import pe.joedayz.thymeleaf.dto.UpdateStudentDTO;
 import pe.joedayz.thymeleaf.dto.mapper.StudentMapper;
 import pe.joedayz.thymeleaf.repository.StudentRepository;
 import pe.joedayz.thymeleaf.service.StudentService;
@@ -63,17 +63,18 @@ public class StudentController {
     return new ModelAndView("edit-student").addObject("student", student);
   }
 
-//  @PostMapping("/{id}")
-//  public String update(@PathVariable String id, @ModelAttribute("student") @Valid UpdateStudentDTO studentDTO, BindingResult result, RedirectAttributes attributes) {
-//    if (result.hasErrors()) {
-//      studentDTO.setId(id);
-//      return "edit-student";
-//    }
-//
-//    this.studentService.update(id, StudentMapper.toEntity(studentDTO));
-//    attributes.addFlashAttribute("message", "User updated successfully!");
-//    return "redirect:/students";
-//  }
+  @PostMapping("/{id}")
+  public String update(@PathVariable String id, @ModelAttribute("student") @Valid UpdateStudentDTO studentDTO,
+      BindingResult result, RedirectAttributes attributes) {
+    if (result.hasErrors()) {
+      studentDTO.setId(id);
+      return "edit-student";
+    }
+
+    this.studentService.update(id, StudentMapper.toEntity(studentDTO));
+    attributes.addFlashAttribute("message", "User updated successfully!");
+    return "redirect:/students";
+  }
 
 
 }
