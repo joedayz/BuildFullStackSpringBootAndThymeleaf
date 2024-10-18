@@ -41,7 +41,7 @@ public class StudentController {
   }
 
   @PostMapping("/new")  // http://localhost:8080/students/new
-  public String createStudent(CreateStudentDTO studentDTO , BindingResult result, RedirectAttributes attributes){
+  public String createStudent(@ModelAttribute("student")  @Valid CreateStudentDTO studentDTO , BindingResult result, RedirectAttributes attributes){
     if (result.hasErrors()) {
       return "new-student";
     }
